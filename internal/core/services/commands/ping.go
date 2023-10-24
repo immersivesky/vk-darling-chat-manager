@@ -2,15 +2,14 @@ package commands
 
 import (
 	"fmt"
-	"github.com/botscommunity/vkgo/API"
 	"time"
-)
 
-var pingPattern = "^(?:ping)$"
+	"github.com/botscommunity/vkgo/API"
+)
 
 func pingScript(bot *API.Bot, payload *Payload) {
 	var (
-		text = fmt.Sprintf("%s, pong!", "UNSPECIFIED")
+		text = fmt.Sprintf("%s, pong!", payload.user.name)
 		sent = bot.SendMessage(payload.message.ChatID, text)
 	)
 
@@ -18,9 +17,9 @@ func pingScript(bot *API.Bot, payload *Payload) {
 		bot.EditMessage(
 			sent.ChatID,
 			sent.ChatMessageID,
-			fmt.Sprintf("%s\nDuration: %d ms.",
+			fmt.Sprintf("%s\nDuration: %d",
 				text,
-				int(time.Now().UnixMilli())-payload.message.Date,
+				time.Since(payload.Time),
 			),
 		)
 	}

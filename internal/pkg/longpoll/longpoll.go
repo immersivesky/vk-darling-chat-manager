@@ -4,6 +4,7 @@ import (
 	"github.com/botscommunity/vkgo/API"
 	"github.com/botscommunity/vkgo/longpoll"
 	"github.com/botscommunity/vkgo/scene"
+	"gitlab.com/immersivesky/affinitycm-vk/internal/core/services/scenes"
 )
 
 type Longpoll struct {
@@ -12,12 +13,12 @@ type Longpoll struct {
 
 func NewLongpoll(
 	token string,
-	messageService scene.Message,
+	messageSceneService *scenes.MessageSceneService,
 ) *Longpoll {
 	bot := API.Create(token)
 
 	scenes := scene.Create().
-		Message(messageService)
+		Message(messageSceneService.GetMessageScene)
 
 	return &Longpoll{longpoll.Create(bot, scenes)}
 }

@@ -2,12 +2,13 @@ package commands
 
 import (
 	"fmt"
+	"net/url"
+
+	"gitlab.com/immersivesky/affinitycm-vk/internal/pkg/consts"
+
 	"github.com/botscommunity/vkgo/API"
 	"github.com/botscommunity/vkgo/types"
-	"net/url"
 )
-
-var banPattern = "^(eban|)$"
 
 func banScript(bot *API.Bot, payload *Payload) {
 	sent := struct {
@@ -16,7 +17,7 @@ func banScript(bot *API.Bot, payload *Payload) {
 	}{}
 	params := url.Values{}
 
-	params.Add("chat_id", fmt.Sprint(payload.message.ChatID-2e9))
+	params.Add("chat_id", fmt.Sprint(payload.message.ChatID-consts.ChatsStartIn))
 	params.Add("user_id", fmt.Sprint(payload.message.Reply.UserID))
 
 	err := bot.CallString("messages.removeChatUser", params, &sent)

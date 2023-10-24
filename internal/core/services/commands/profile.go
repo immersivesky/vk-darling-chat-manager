@@ -2,15 +2,14 @@ package commands
 
 import (
 	"fmt"
+
 	"github.com/botscommunity/vkgo/API"
 	"github.com/botscommunity/vkgo/keyboard"
 )
 
-var (
-	profilePattern  = "^(profile|профиль)$"
-	profileKeyboard = keyboard.Create().Inline().
-			Callback("📅 Notes").JSON()
-)
+//nolint:all
+var profileKeyboard = keyboard.Create().Inline().
+	Callback("📅 Notes").JSON()
 
 func profileScript(bot *API.Bot, payload *Payload) {
 	bot.SendMessage(API.SendMessage{

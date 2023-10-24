@@ -1,20 +1,21 @@
 package main
 
 import (
-	"gitlab.com/immersivesky/affinitycm-vk/internal/core/services"
-	"gitlab.com/immersivesky/affinitycm-vk/internal/core/services/commands"
-	"gitlab.com/immersivesky/affinitycm-vk/internal/pkg/longpoll"
 	"log"
 	"os"
+
+	"gitlab.com/immersivesky/affinitycm-vk/internal/core/services/commands"
+	"gitlab.com/immersivesky/affinitycm-vk/internal/core/services/scenes"
+	"gitlab.com/immersivesky/affinitycm-vk/internal/pkg/longpoll"
 )
 
 func main() {
 	commandsService := commands.NewCommandsService()
-	messageService := services.NewMessageService(commandsService)
+	messageSceneService := scenes.NewMessageSceneService(commandsService)
 
 	client := longpoll.NewLongpoll(
 		os.Getenv("TOKEN"),
-		messageService,
+		messageSceneService,
 	)
 
 	log.Fatalln(client.Run())

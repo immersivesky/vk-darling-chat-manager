@@ -5,13 +5,11 @@ import (
 	"github.com/botscommunity/vkgo/keyboard"
 )
 
-var (
-	helpPattern  = "^(?:help|menu|помощь|команды)$"
-	menuKeyboard = keyboard.Create().Inline().
-			Callback("🛍️ Plugins", `{"command": "plugins"}`).
-			Callback("✏ Control", `{"command": "control"}`).
-			JSON()
-)
+//nolint:all
+var menuKeyboard = keyboard.Create().Inline().
+	Callback("🛍️ Plugins", `{"command": "plugins"}`).
+	Callback("✏ Control", `{"command": "control"}`).
+	JSON()
 
 func helpScript(bot *API.Bot, payload *Payload) {
 	bot.SendMessage(API.SendMessage{

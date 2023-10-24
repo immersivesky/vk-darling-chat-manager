@@ -1,17 +1,12 @@
 package commands
 
 import (
-	"github.com/botscommunity/vkgo/API"
 	"regexp"
+
+	"github.com/botscommunity/vkgo/API"
 )
 
-var privateCommands = map[string]command{
-	pingPattern:    pingScript,
-	helpPattern:    helpScript,
-	profilePattern: profileScript,
-}
-
-func (c *CommandsService) PrivateExecute(bot *API.Bot, payload *Payload) {
+func (c *Service) PrivateExecute(bot *API.Bot, payload *Payload) {
 	for pattern, command := range c.Private {
 		if locate, err := regexp.MatchString(pattern, payload.message.Text); err != nil {
 			panic(err)

@@ -1,0 +1,69 @@
+run:
+  timeout: 5m
+
+linters-settings:
+  depguard:
+    rules:
+      main:
+        allow:
+          - os
+          - fmt
+          - log
+          - time
+          - regexp
+          - gitlab.com/immersivesky/affinitycm-vk
+          - github.com/botscommunity/vkgo
+          - net/url
+          - github.com/gofiber/fiber/v2
+          - google.golang.org/grpc
+          - go.mongodb.org/mongo-driver/mongo
+          - github.com/redis/rueidis
+  lll:
+    line-length: 200
+
+linters:
+  disable-all: true
+  enable:
+    - bodyclose
+    - depguard
+    - dogsled
+    - dupl
+    - errcheck
+    - exportloopref
+    - funlen
+    - gocheckcompilerdirectives
+    - gochecknoinits
+    - goconst
+    - gocritic
+    - gocyclo
+    - gofmt
+    - goimports
+    - gomnd
+    - goprintffuncname
+    - gosec
+    - gosimple
+    - govet
+    - ineffassign
+    - lll
+    - misspell
+    - nakedret
+    - noctx
+    - nolintlint
+    - revive
+    - staticcheck
+    - stylecheck
+    - typecheck
+    - unconvert
+    - unparam
+    - unused
+    - whitespace
+    - asciicheck
+    - gochecknoglobals
+    - gocognit
+    - godot
+    - godox
+    - goerr113
+    - nestif
+    - prealloc
+    - testpackage
+    - wsl

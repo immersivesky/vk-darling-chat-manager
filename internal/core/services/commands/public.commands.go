@@ -1,15 +1,12 @@
 package commands
 
 import (
-	"github.com/botscommunity/vkgo/API"
 	"regexp"
+
+	"github.com/botscommunity/vkgo/API"
 )
 
-var publicCommands = map[string]command{
-	banPattern: banScript,
-}
-
-func (c *CommandsService) PublicExecute(bot *API.Bot, payload *Payload) {
+func (c *Service) PublicExecute(bot *API.Bot, payload *Payload) {
 	for pattern, command := range c.Public {
 		if locate, err := regexp.MatchString(pattern, payload.message.Text); err != nil {
 			panic(err)
