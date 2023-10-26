@@ -4,19 +4,27 @@ import (
 	"log"
 	"os"
 
+	"github.com/botscommunity/vkgo/API"
+	"github.com/botscommunity/vkgo/longpoll"
+	"github.com/botscommunity/vkgo/scene"
+	"gitlab.com/immersivesky/affinitycm-vk/internal/adapters/repository"
 	"gitlab.com/immersivesky/affinitycm-vk/internal/core/services/commands"
 	"gitlab.com/immersivesky/affinitycm-vk/internal/core/services/scenes"
-	"gitlab.com/immersivesky/affinitycm-vk/internal/pkg/longpoll"
 )
 
 func main() {
-	commandsService := commands.NewCommandsService()
-	messageSceneService := scenes.NewMessageSceneService(commandsService)
+	db, err := repository.NewDB("postgresql://affinitydb:huiowte4@localhost:8032/vk")
+	if err != nil {
+		panic(err)
+	}
 
-	client := longpoll.NewLongpoll(
-		os.Getenv("TOKEN"),
-		messageSceneService,
-	)
+	publicCommandsService, privateCommandsService := commands.NewCommandsService()
+	messageSceneService := scenes.NewMessageSceneService(db, publicCommandsService, privateCommandsService)
 
-	log.Fatalln(client.Run())
+	bot := API.Create(os.Getenv("TOKEN"))
+
+	scenes := scene.Create().
+		Message(messageSceneService.GetMessageScene)
+
+	log.Fatalln(longpoll.Create(bot, scenes).Listen())
 }

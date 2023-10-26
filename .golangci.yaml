@@ -12,8 +12,12 @@ linters-settings:
           - time
           - regexp
           - gitlab.com/immersivesky/affinitycm-vk
+          - github.com/gofiber/fiber/v2
           - github.com/botscommunity/vkgo
           - net/url
+          - errors
+          - context
+          - github.com/jackc/pgx
           - github.com/gofiber/fiber/v2
           - google.golang.org/grpc
           - go.mongodb.org/mongo-driver/mongo

@@ -4,22 +4,28 @@ import (
 	"fmt"
 	"time"
 
+	"gitlab.com/immersivesky/affinitycm-vk/internal/core/core/domain"
+
 	"github.com/botscommunity/vkgo/API"
 )
 
-func pingScript(bot *API.Bot, payload *Payload) {
+type PingCmd struct{}
+
+func (c *PingCmd) Execute(bot *API.Bot, payload *domain.Payload) {
 	var (
-		text = fmt.Sprintf("%s, pong!", payload.user.name)
-		sent = bot.SendMessage(payload.message.ChatID, text)
+		beforeMessageDuration = time.Since(payload.Time)
+		text                  = fmt.Sprintf("%d, pong!", payload.Chat.ID)
+		sent                  = bot.SendMessage(payload.Message.ChatID, text)
 	)
 
 	if sent.Error.Message == "" {
 		bot.EditMessage(
 			sent.ChatID,
 			sent.ChatMessageID,
-			fmt.Sprintf("%s\nDuration: %d",
+			fmt.Sprintf("%s\nDuration: %v\nWithout SendMessage: %v",
 				text,
 				time.Since(payload.Time),
+				beforeMessageDuration,
 			),
 		)
 	}

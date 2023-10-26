@@ -1,0 +1,10 @@
+version: '3.9'
+
+services:
+  vk-affinity-postgresql:
+    image: postgres:16.0-alpine3.18
+    ports: [ '8032:5432' ]
+    environment:
+      POSTGRES_USER: affinitydb
+      POSTGRES_PASSWORD: huiowte4
+      POSTGRES_DB: vk

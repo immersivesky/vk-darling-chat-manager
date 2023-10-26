@@ -1,8 +1,11 @@
 package commands
 
 import (
+	"fmt"
+
 	"github.com/botscommunity/vkgo/API"
 	"github.com/botscommunity/vkgo/keyboard"
+	"gitlab.com/immersivesky/affinitycm-vk/internal/core/core/domain"
 )
 
 //nolint:all
@@ -11,11 +14,13 @@ var menuKeyboard = keyboard.Create().Inline().
 	Callback("✏ Control", `{"command": "control"}`).
 	JSON()
 
-func helpScript(bot *API.Bot, payload *Payload) {
+type HelpCmd struct{}
+
+func (c *HelpCmd) Execute(bot *API.Bot, payload *domain.Payload) {
 	bot.SendMessage(API.SendMessage{
-		ChatID:   payload.message.ChatID,
-		Text:     "UNSPECIFIED, menu:",
+		ChatID:   payload.Message.ChatID,
+		Text:     fmt.Sprintf("%d, menu:", payload.Chat.ID),
 		Keyboard: menuKeyboard,
-		Forward:  API.GetForward(payload.message.ChatID, payload.message.ChatMessageID, true),
+		Forward:  API.GetForward(payload.Message.ChatID, payload.Message.ChatMessageID, true),
 	})
 }
