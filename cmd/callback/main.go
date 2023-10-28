@@ -9,7 +9,8 @@ import (
 	"github.com/botscommunity/vkgo/callback"
 	"github.com/botscommunity/vkgo/scene"
 	fiber "github.com/gofiber/fiber/v2"
-	// "github.com/gofiber/fiber/v2/middleware/logger"
+
+	// "github.com/gofiber/fiber/v2/middleware/logger".
 	"gitlab.com/immersivesky/affinitycm-vk/internal/adapters/repository"
 	"gitlab.com/immersivesky/affinitycm-vk/internal/core/services/commands"
 	"gitlab.com/immersivesky/affinitycm-vk/internal/core/services/scenes"

@@ -19,6 +19,7 @@ linters-settings:
           - context
           - github.com/jackc/pgx
           - github.com/gofiber/fiber/v2
+          - github.com/ansrivas/fiberprometheus/v2
           - google.golang.org/grpc
           - go.mongodb.org/mongo-driver/mongo
           - github.com/redis/rueidis
