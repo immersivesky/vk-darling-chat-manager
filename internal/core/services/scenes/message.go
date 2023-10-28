@@ -8,8 +8,8 @@ import (
 
 	"github.com/botscommunity/vkgo/API"
 	"github.com/botscommunity/vkgo/update"
-	"gitlab.com/immersivesky/affinitycm-vk/internal/core/core/domain"
-	"gitlab.com/immersivesky/affinitycm-vk/internal/core/core/ports"
+	"gitlab.com/immersivesky/affinitycm-vk/internal/core/domain"
+	"gitlab.com/immersivesky/affinitycm-vk/internal/core/ports"
 	"gitlab.com/immersivesky/affinitycm-vk/pkg/consts"
 )
 

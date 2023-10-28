@@ -5,7 +5,7 @@ import (
 
 	"github.com/botscommunity/vkgo/API"
 	"github.com/botscommunity/vkgo/keyboard"
-	"gitlab.com/immersivesky/affinitycm-vk/internal/core/core/domain"
+	"gitlab.com/immersivesky/affinitycm-vk/internal/core/domain"
 )
 
 //nolint:all

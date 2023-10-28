@@ -3,7 +3,7 @@ package commands
 import (
 	"regexp"
 
-	"gitlab.com/immersivesky/affinitycm-vk/internal/core/core/ports"
+	"gitlab.com/immersivesky/affinitycm-vk/internal/core/ports"
 )
 
 func NewCommandsService() (ports.Commands, ports.Commands) {

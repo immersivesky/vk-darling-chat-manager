@@ -4,7 +4,7 @@ import (
 	"regexp"
 
 	"github.com/botscommunity/vkgo/API"
-	"gitlab.com/immersivesky/affinitycm-vk/internal/core/core/domain"
+	"gitlab.com/immersivesky/affinitycm-vk/internal/core/domain"
 )
 
 type DB interface {

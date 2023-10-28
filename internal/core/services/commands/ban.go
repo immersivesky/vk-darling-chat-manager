@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"net/url"
 
-	"gitlab.com/immersivesky/affinitycm-vk/internal/core/core/domain"
+	"gitlab.com/immersivesky/affinitycm-vk/internal/core/domain"
 
 	"gitlab.com/immersivesky/affinitycm-vk/pkg/consts"
 

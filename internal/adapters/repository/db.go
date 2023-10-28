@@ -4,7 +4,7 @@ import (
 	"context"
 
 	"github.com/jackc/pgx/v5/pgxpool"
-	"gitlab.com/immersivesky/affinitycm-vk/internal/core/core/domain"
+	"gitlab.com/immersivesky/affinitycm-vk/internal/core/domain"
 )
 
 type DB struct {

@@ -13,7 +13,7 @@ import (
 )
 
 func main() {
-	db, err := repository.NewDB("postgresql://affinitydb:huiowte4@localhost:8032/vk")
+	db, err := repository.NewDB(os.Getenv("POSTGRESQL_URI"))
 	if err != nil {
 		panic(err)
 	}

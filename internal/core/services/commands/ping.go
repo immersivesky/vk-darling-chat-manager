@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"time"
 
-	"gitlab.com/immersivesky/affinitycm-vk/internal/core/core/domain"
+	"gitlab.com/immersivesky/affinitycm-vk/internal/core/domain"
 
 	"github.com/botscommunity/vkgo/API"
 )
