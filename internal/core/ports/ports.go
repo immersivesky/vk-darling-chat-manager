@@ -10,6 +10,9 @@ import (
 type DB interface {
 	GetChat(int) (*domain.Chat, error)
 	CreateChat(int) (*domain.Chat, error)
+
+	GetChatMember(int, int) (*domain.ChatMember, error)
+	CreateChatMember(int, int, string) (*domain.ChatMember, error)
 }
 
 type Commands map[*regexp.Regexp]Command

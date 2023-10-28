@@ -5,8 +5,8 @@ services:
 #    image: postgres:16.0-alpine3.18
 #    ports: [ '8032:5432' ]
 #    environment:
-#      POSTGRES_USER: affinitydb
-#      POSTGRES_PASSWORD: huiowte4
+#      POSTGRES_USER: darling_postgresql
+#      POSTGRES_PASSWORD: darling_password
 #      POSTGRES_DB: vk
   server:
     build:

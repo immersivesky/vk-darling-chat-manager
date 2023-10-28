@@ -18,10 +18,10 @@ type ProfileCmd struct{}
 func (c *ProfileCmd) Execute(bot *API.Bot, payload *domain.Payload) {
 	bot.SendMessage(API.SendMessage{
 		ChatID: payload.Message.ChatID,
-		Text: fmt.Sprintf(`📒 %d, your profile:
+		Text: fmt.Sprintf(`📒 %s, your profile:
 
-🆔 ID: 10
-💎 Balance: 🍓 0 🥑 0 ☕ 0`, payload.Chat.ID),
+🆔 ID: %d
+💎 Balance: 🍓 0 🥑 0 ☕ 0`, payload.ChatMember.Name, payload.Message.UserID),
 		Keyboard: profileKeyboard,
 		Forward:  API.GetForward(payload.Message.ChatID, payload.Message.ChatMessageID, true),
 	})

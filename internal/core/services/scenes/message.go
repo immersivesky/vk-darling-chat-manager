@@ -36,15 +36,31 @@ func (ms *MessageSceneService) GetMessageScene(bot *API.Bot, object update.Objec
 	chat, err := ms.db.GetChat(payload.Message.ChatID)
 	payload.Chat = chat
 
-	if err != nil {
-		if errors.Is(err, pgx.ErrNoRows) {
-			payload.Chat, err = ms.db.CreateChat(payload.Message.ChatID)
-			if err != nil {
-				panic(err)
-			}
-		} else {
+	if errors.Is(err, pgx.ErrNoRows) {
+		payload.Chat, err = ms.db.CreateChat(payload.Message.ChatID)
+		if err != nil {
 			panic(err)
 		}
+	} else if err != nil {
+		panic(err)
+	}
+
+	member, err := ms.db.GetChatMember(payload.Message.ChatID, payload.Message.UserID)
+	payload.ChatMember = member
+
+	if errors.Is(err, pgx.ErrNoRows) {
+		user := bot.User(payload.Message.UserID)
+
+		if user.Error.Code != 0 {
+			panic(user.Error)
+		}
+
+		payload.ChatMember, err = ms.db.CreateChatMember(payload.Message.ChatID, payload.Message.UserID, user.Name)
+		if err != nil {
+			panic(err)
+		}
+	} else if err != nil {
+		panic(err)
 	}
 
 	if object.Message.ChatID > consts.ChatsStartIn {

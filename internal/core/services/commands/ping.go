@@ -14,7 +14,7 @@ type PingCmd struct{}
 func (c *PingCmd) Execute(bot *API.Bot, payload *domain.Payload) {
 	var (
 		beforeMessageDuration = time.Since(payload.Time)
-		text                  = fmt.Sprintf("%d, pong!", payload.Chat.ID)
+		text                  = fmt.Sprintf("%s, pong!", payload.ChatMember.Name)
 		sent                  = bot.SendMessage(payload.Message.ChatID, text)
 	)
 

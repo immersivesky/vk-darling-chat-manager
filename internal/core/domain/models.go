@@ -7,11 +7,16 @@ import (
 )
 
 type Chat struct {
-	ID int
+	ChatID int
+}
+
+type ChatMember struct {
+	Name string
 }
 
 type Payload struct {
-	Message update.Message
-	Chat    *Chat
-	Time    time.Time
+	Message    update.Message
+	Chat       *Chat
+	ChatMember *ChatMember
+	Time       time.Time
 }

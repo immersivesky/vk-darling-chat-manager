@@ -19,7 +19,7 @@ type HelpCmd struct{}
 func (c *HelpCmd) Execute(bot *API.Bot, payload *domain.Payload) {
 	bot.SendMessage(API.SendMessage{
 		ChatID:   payload.Message.ChatID,
-		Text:     fmt.Sprintf("%d, menu:", payload.Chat.ID),
+		Text:     fmt.Sprintf("%s, menu:", payload.ChatMember.Name),
 		Keyboard: menuKeyboard,
 		Forward:  API.GetForward(payload.Message.ChatID, payload.Message.ChatMessageID, true),
 	})
