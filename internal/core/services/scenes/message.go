@@ -2,6 +2,7 @@ package scenes
 
 import (
 	"errors"
+	"gitlab.com/immersivesky/affinitycm-vk/internal/core/services/commands"
 	"time"
 
 	"github.com/jackc/pgx/v5"
@@ -31,6 +32,10 @@ func (ms *MessageSceneService) GetMessageScene(bot *API.Bot, object update.Objec
 	payload := &domain.Payload{
 		Message: object.Message,
 		Time:    time.Now(),
+	}
+
+	if _, ok := payload.Message.Payload["command"]; ok {
+		payload.Message.Text = payload.Message.Payload["command"]
 	}
 
 	chat, err := ms.db.GetChat(payload.Message.ChatID)
@@ -63,7 +68,12 @@ func (ms *MessageSceneService) GetMessageScene(bot *API.Bot, object update.Objec
 		panic(err)
 	}
 
-	if object.Message.ChatID > consts.ChatsStartIn {
+	if object.Message.ChatID > consts.ChatsStartWith {
+		if payload.Message.Text == "[club196374631|@darlingcontrol]" {
+			new(commands.ControlCmd).Execute(bot, payload)
+			return
+		}
+
 		for regex, cmd := range ms.publicCommands {
 			if ok := regex.MatchString(payload.Message.Text); ok {
 				cmd.Execute(bot, payload)

@@ -22,7 +22,7 @@ func main() {
 		panic(err)
 	}
 
-	publicCommandsService, privateCommandsService := commands.NewCommandsService()
+	publicCommandsService, privateCommandsService := commands.NewCommandsService(db)
 	messageSceneService := scenes.NewMessageSceneService(db, publicCommandsService, privateCommandsService)
 
 	bot := API.Create(os.Getenv("TOKEN"))

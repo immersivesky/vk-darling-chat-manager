@@ -21,7 +21,7 @@ func (c *BanCmd) Execute(bot *API.Bot, payload *domain.Payload) {
 	}{}
 	params := url.Values{}
 
-	params.Add("chat_id", fmt.Sprint(payload.Message.ChatID-consts.ChatsStartIn))
+	params.Add("chat_id", fmt.Sprint(payload.Message.ChatID-consts.ChatsStartWith))
 	params.Add("member_id", fmt.Sprint(payload.Message.Reply.UserID))
 
 	err := bot.CallString("messages.removeChatUser", params, &sent)

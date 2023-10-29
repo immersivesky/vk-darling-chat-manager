@@ -10,13 +10,13 @@ import (
 
 //nolint:all
 var menuKeyboard = keyboard.Create().Inline().
-	Callback("🛍️ Plugins", `{"command": "plugins"}`).
-	Callback("✏ Control", `{"command": "control"}`).
+	Text("🛍️ Plugins", `{"command": "plugins"}`).
+	Text("✏ Control", `{"command": "control"}`).
 	JSON()
 
-type HelpCmd struct{}
+type MenuCmd struct{}
 
-func (c *HelpCmd) Execute(bot *API.Bot, payload *domain.Payload) {
+func (c *MenuCmd) Execute(bot *API.Bot, payload *domain.Payload) {
 	bot.SendMessage(API.SendMessage{
 		ChatID:   payload.Message.ChatID,
 		Text:     fmt.Sprintf("%s, menu:", payload.ChatMember.Name),

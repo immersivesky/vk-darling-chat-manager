@@ -1,10 +1,9 @@
 package ports
 
 import (
-	"regexp"
-
 	"github.com/botscommunity/vkgo/API"
 	"gitlab.com/immersivesky/affinitycm-vk/internal/core/domain"
+	"regexp"
 )
 
 type DB interface {
@@ -13,6 +12,8 @@ type DB interface {
 
 	GetChatMember(int, int) (*domain.ChatMember, error)
 	CreateChatMember(int, int, string) (*domain.ChatMember, error)
+
+	GetPlugins(int) ([]*domain.Plugin, error)
 }
 
 type Commands map[*regexp.Regexp]Command

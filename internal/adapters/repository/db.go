@@ -2,7 +2,6 @@ package repository
 
 import (
 	"context"
-
 	"github.com/jackc/pgx/v5/pgxpool"
 	"gitlab.com/immersivesky/affinitycm-vk/internal/core/domain"
 )
@@ -67,4 +66,32 @@ func (db *DB) CreateChatMember(chatID, memberID int, name string) (*domain.ChatM
 	}
 
 	return member, nil
+}
+
+func (db *DB) GetPlugins(page int) ([]*domain.Plugin, error) {
+	var (
+		plugins = make([]*domain.Plugin, 0, 8)
+		offset  = page * 8
+	)
+
+	rows, err := db.client.Query(context.Background(), "SELECT status, name, endpoint FROM plugins WHERE plugin_id >= $1 AND plugin_id <= $2;", offset-8, offset)
+
+	if err != nil {
+		return nil, err
+	}
+
+	for rows.Next() {
+		plugin := new(domain.Plugin)
+		if err := rows.Scan(&plugin.Status, &plugin.Name, &plugin.Endpoint); err != nil {
+			return nil, err
+		}
+
+		plugins = append(plugins, plugin)
+	}
+
+	return plugins, nil
+}
+
+func GetChatPlugins(chatID int) ([]*domain.ChatPlugin, error) {
+	return nil, nil
 }
